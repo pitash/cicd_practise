@@ -12,11 +12,51 @@ on:
 
 
 jobs:
-  read_hello_file:
+  test_job:
     runs-on: ubuntu-latest
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
 
       - name: Read hello1.txt 
-        run: cat hello1.txt 
+        run: echo "This Is Test Job" 
+      
+  build_job:
+    runs-on: ubuntu-latest 
+    needs: test_job
+    steps:
+      - name: Git Clone
+        uses: actions/checkout@v2 
+
+      - name: Set Up Node js.
+        # run: apt-get istall -y nodejs npm -> eita use korle onek besi time lagbe install hote
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '22'     
+      
+      # - name: Build Project
+      #   run: echo "This Is Build Job"  
+
+# ========================
+# Automatic Steps Added by GitHub
+# ========================
+
+# Step 4: Post Git Clone
+# -------------------------------------------------
+# This is automatically added by GitHub after the "Git Clone" step.
+# It's the "post" phase of the checkout action.
+# It cleans up:
+#  - Temporary credentials used for checkout
+#  - Authentication tokens
+#  - Temporary folders
+# GitHub runs post-steps in reverse order of when the actions were run.
+
+# Step 5: Complete job
+# -------------------------------------------------
+# This is also automatic — it marks the job as finished.
+# GitHub does internal housekeeping here:
+#  - Marks the job status (success/failure/cancelled)
+#  - Saves logs and artifacts
+#  - Releases the VM/container runner
+#  - Updates the GitHub Actions UI
+        
