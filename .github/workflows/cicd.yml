@@ -18,5 +18,5 @@ jobs:
       - name: Git Clone
         uses: actions/checkout@v2
 
-      - name: Read hello.txt 
-        run: cat hello.txt 
+      - name: Read hello1.txt 
+        run: cat hello1.txt 
